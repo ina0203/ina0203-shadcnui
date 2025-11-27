@@ -1,0 +1,191 @@
+$ cd /workspace/shadcn-ui
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1718 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-B9NX38N4.css   68.91 kB │ gzip:  11.68 kB
+dist/assets/index-BI_VzuQU.js   405.52 kB │ gzip: 125.65 kB
+✓ built in 5.31s
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+/workspace/shadcn-ui/src/pages/OutfitBank.tsx
+  62:53  error  Unnecessary escape character: \/  no-useless-escape
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1723 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-D69vfAW2.css   70.29 kB │ gzip:  11.87 kB
+dist/assets/index-CgIf8qtF.js   418.18 kB │ gzip: 129.69 kB
+✓ built in 5.23s
+$ cd /workspace/shadcn-ui && pnpm add @supabase/supabase-js
+
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 72, reused 72, downloaded 0, added 0
+Progress: resolved 339, reused 324, downloaded 0, added 0
+ WARN  1 deprecated subdependencies found: rollup-plugin-terser@7.0.2
+Already up to date
+Progress: resolved 501, reused 427, downloaded 0, added 0, done
+
+Done in 5.4s
+$ cd /workspace/shadcn-ui && pnpm run lint
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+$ cd /workspace/shadcn-ui && pnpm run build
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1740 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-Bu5_4UDD.css   70.67 kB │ gzip:  11.93 kB
+dist/assets/index-Cx37A5uu.js   436.00 kB │ gzip: 134.70 kB
+✓ built in 6.31s
+$ cd /workspace/shadcn-ui && pnpm run lint
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+/workspace/shadcn-ui/src/pages/OutfitBank.tsx
+  24:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1741 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-D3liS6g6.css   70.31 kB │ gzip:  11.90 kB
+dist/assets/index-DquFLljz.js   438.50 kB │ gzip: 135.20 kB
+✓ built in 5.83s
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1741 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-D64heNIT.css   70.73 kB │ gzip:  11.96 kB
+dist/assets/index-xlh06vW6.js   441.17 kB │ gzip: 135.77 kB
+✓ built in 5.22s
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1741 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-BYNBv-JP.css   78.29 kB │ gzip:  12.82 kB
+dist/assets/index-CIK0Nm1-.js   446.26 kB │ gzip: 137.07 kB
+✓ built in 5.29s
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1741 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-Burukn0B.css   79.34 kB │ gzip:  12.94 kB
+dist/assets/index-CMAyUpgE.js   447.39 kB │ gzip: 137.39 kB
+✓ built in 5.90s
+$ cd /workspace/shadcn-ui && pnpm run lint && pnpm run build
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1739 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.84 kB │ gzip:   0.58 kB
+dist/assets/index-B-uannxL.css   79.28 kB │ gzip:  12.89 kB
+dist/assets/index-D3HJUmfO.js   443.02 kB │ gzip: 135.66 kB
+✓ built in 5.41s
