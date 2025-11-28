@@ -8,6 +8,10 @@ export interface User {
   role: 'user' | 'creator' | 'seller' | 'admin';
   totalPoints: number;
   avatarUrl?: string;
+  subscriptionTier: 'free' | 'pro' | 'premium';
+  instagramConnected: boolean;
+  instagramUsername?: string;
+  affiliateRevenue: number;
   createdAt: string;
 }
 
@@ -56,6 +60,11 @@ export interface ClosetItem {
   wearCount: number;
   utilizationRate: number;
   autoRegistered: boolean;
+  source: 'manual' | 'instagram' | 'community';
+  isPublic: boolean;
+  instagramPostId?: string;
+  communityLikes: number;
+  communityLikedBy: string[];
   createdAt: string;
 }
 
@@ -145,7 +154,7 @@ export const toggleLike = (outfitId: string, userId: string): boolean => {
   if (card) {
     const likedIndex = card.likedBy.indexOf(userId);
     let isLiked = false;
-    
+
     if (likedIndex > -1) {
       // Unlike: remove like and deduct points from creator
       card.likedBy.splice(likedIndex, 1);
@@ -158,7 +167,7 @@ export const toggleLike = (outfitId: string, userId: string): boolean => {
       addPointsToUser(card.creatorId, 10);
       isLiked = true;
     }
-    
+
     saveOutfitCards(cards);
     return isLiked;
   }
@@ -196,13 +205,15 @@ export const getClosetItems = (): ClosetItem[] => getFromStorage<ClosetItem>('cl
 export const saveClosetItems = (items: ClosetItem[]): void => saveToStorage('closetItems', items);
 export const getClosetByUser = (userId: string): ClosetItem[] => getClosetItems().filter(item => item.userId === userId);
 
-export const addToCloset = (item: Omit<ClosetItem, 'id' | 'wearCount' | 'utilizationRate' | 'createdAt'>): void => {
+export const addToCloset = (item: Omit<ClosetItem, 'id' | 'wearCount' | 'utilizationRate' | 'createdAt' | 'communityLikes' | 'communityLikedBy'>): void => {
   const items = getClosetItems();
   const newItem: ClosetItem = {
     ...item,
     id: uuidv4(),
     wearCount: 0,
     utilizationRate: 0,
+    communityLikes: 0,
+    communityLikedBy: [],
     createdAt: new Date().toISOString(),
   };
   items.push(newItem);
@@ -219,6 +230,67 @@ export const addWearRecord = (itemId: string, userId: string): void => {
     saveClosetItems(items);
   }
 };
+
+// Community Closet Functions
+export const getPublicClosetItems = (): ClosetItem[] => {
+  return getClosetItems().filter(item => item.isPublic);
+};
+
+export const togglePublicItem = (itemId: string, userId: string): void => {
+  const items = getClosetItems();
+  const item = items.find(i => i.id === itemId && i.userId === userId);
+  if (item) {
+    item.isPublic = !item.isPublic;
+    saveClosetItems(items);
+  }
+};
+
+export const likeClosetItem = (itemId: string, userId: string): boolean => {
+  const items = getClosetItems();
+  const item = items.find(i => i.id === itemId);
+  if (item) {
+    const likedIndex = item.communityLikedBy.indexOf(userId);
+    let isLiked = false;
+
+    if (likedIndex > -1) {
+      // Unlike
+      item.communityLikedBy.splice(likedIndex, 1);
+      item.communityLikes--;
+    } else {
+      // Like
+      item.communityLikedBy.push(userId);
+      item.communityLikes++;
+      isLiked = true;
+    }
+
+    saveClosetItems(items);
+    return isLiked;
+  }
+  return false;
+};
+
+export const addFromInstagram = (
+  userId: string,
+  instagramPostId: string,
+  name: string,
+  brand: string,
+  imageUrl: string,
+  estimatedPrice: number
+): void => {
+  addToCloset({
+    userId,
+    name,
+    brand,
+    purchasePrice: estimatedPrice,
+    purchaseDate: new Date().toISOString().split('T')[0],
+    imageUrl,
+    autoRegistered: true,
+    source: 'instagram',
+    isPublic: false,
+    instagramPostId,
+  });
+};
+
 
 // Orders
 export const getOrders = (): Order[] => getFromStorage<Order>('orders');
@@ -340,6 +412,10 @@ export const initializeSampleData = (): void => {
         wearCount: 15,
         utilizationRate: 17,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: false,
+        communityLikes: 0,
+        communityLikedBy: [],
         createdAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -353,6 +429,10 @@ export const initializeSampleData = (): void => {
         wearCount: 28,
         utilizationRate: 47,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: true,
+        communityLikes: 12,
+        communityLikedBy: ['user-1', 'user-2'],
         createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -366,6 +446,10 @@ export const initializeSampleData = (): void => {
         wearCount: 45,
         utilizationRate: 38,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: true,
+        communityLikes: 8,
+        communityLikedBy: ['user-3'],
         createdAt: new Date(Date.now() - 120 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -379,6 +463,10 @@ export const initializeSampleData = (): void => {
         wearCount: 12,
         utilizationRate: 40,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: false,
+        communityLikes: 0,
+        communityLikedBy: [],
         createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -392,6 +480,10 @@ export const initializeSampleData = (): void => {
         wearCount: 8,
         utilizationRate: 18,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: true,
+        communityLikes: 25,
+        communityLikedBy: ['user-1', 'user-2', 'user-3', 'user-4'],
         createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
       },
       {
@@ -405,6 +497,10 @@ export const initializeSampleData = (): void => {
         wearCount: 22,
         utilizationRate: 29,
         autoRegistered: false,
+        source: 'manual',
+        isPublic: false,
+        communityLikes: 0,
+        communityLikedBy: [],
         createdAt: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000).toISOString(),
       },
     ];

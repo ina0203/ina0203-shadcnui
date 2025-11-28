@@ -17,6 +17,7 @@ import OutfitDetail from './pages/OutfitDetail';
 import Sellers from './pages/Sellers';
 import Creators from './pages/Creators';
 import Compare from './pages/Compare';
+import Subscription from './pages/Subscription';
 import Layout from './components/Layout';
 
 const queryClient = new QueryClient();
@@ -60,6 +61,7 @@ const AppRoutes = () => (
     <Route path="/sellers" element={<ProtectedRoute><Sellers /></ProtectedRoute>} />
     <Route path="/creators" element={<ProtectedRoute><Creators /></ProtectedRoute>} />
     <Route path="/compare" element={<ProtectedRoute><Compare /></ProtectedRoute>} />
+    <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
